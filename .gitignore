@@ -1,0 +1,14 @@
+# Simulation artifacts
+*.vcd
+*.vvp
+*.out
+mips_sim
+work/
+transcript
+*.wlf
+*.log
+
+# Editor/OS cruft
+.vscode/
+*.swp
+.DS_Store
