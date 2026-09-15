@@ -5,8 +5,8 @@ Fetch → Decode → Execute → Memory → Write-back.
 
 ## What this project is
 
-This is a hardware description (not software) of a simplified MIPS CPU. It's
-written at a fairly low, structural level — pipeline registers, muxes, and
+This is a hardware description of a simplified MIPS CPU. It's
+written at a fairly low, structural level - pipeline registers, muxes, and
 logic gates are wired together explicitly, the way you'd draw them on a
 processor datapath diagram in a computer-architecture course. It's meant for
 learning/simulating how a pipelined CPU actually works, not as a
@@ -16,23 +16,23 @@ production-ready chip design.
 
 The processor understands a small set of MIPS instructions:
 
-- **R-type ALU ops** (add, sub, and, or, etc. — via the ALU control unit)
-- `lw` — load word from memory
-- `sw` — store word to memory
-- `bne` — branch if not equal
-- `xori` — XOR immediate
-- `j` — jump
-- `jr` — jump register
+- **R-type ALU ops** (add, sub, and, or, etc. - via the ALU control unit)
+- `lw` - load word from memory
+- `sw` - store word to memory
+- `bne` - branch if not equal
+- `xori` - XOR immediate
+- `j` - jump
+- `jr` - jump register
 
 Since instructions in a pipeline overlap in time, this design also handles
 the three classic pipeline hazard problems:
 
-- **Data forwarding** — if an instruction needs a result that a previous,
+- **Data forwarding** - if an instruction needs a result that a previous,
   still-in-flight instruction hasn't written back yet, the value is
   forwarded directly instead of waiting.
-- **Stalling** — if forwarding alone can't solve it (e.g. right after a
+- **Stalling** - if forwarding alone can't solve it (e.g. right after a
   `lw`), the pipeline is paused for a cycle until the data is ready.
-- **Flushing** — when a branch or jump changes the program's direction, the
+- **Flushing** - when a branch or jump changes the program's direction, the
   wrongly-fetched instructions behind it are discarded.
 
 ## Folder contents
@@ -47,7 +47,7 @@ instr.txt       The program (machine code, in binary) the CPU runs
 
 | File | What it does |
 |---|---|
-| `Mips_Pipeline_top_level.v` | Top-level module — wires all five pipeline stages together |
+| `Mips_Pipeline_top_level.v` | Top-level module - wires all five pipeline stages together |
 | `Control_Unit.v` | Decodes the opcode into control signals |
 | `ALU_32bit.v`, `ALU_Control_Unit.v` | The arithmetic/logic unit and its control |
 | `Register_file.v` | The CPU's 32 general-purpose registers |
@@ -61,7 +61,7 @@ instr.txt       The program (machine code, in binary) the CPU runs
 
 ## How to simulate it
 
-The testbench just applies a clock and a reset pulse — the program in
+The testbench just applies a clock and a reset pulse - the program in
 `instr.txt` runs on its own from there. With Icarus Verilog, run this from
 the project's top folder (so `instr.txt` is found where the simulator looks
 for it):
@@ -76,5 +76,5 @@ statements to confirm the program executed as expected.
 
 ## Status
 
-A learning/simulation project — it has not been run through synthesis or
+A learning/simulation project - it has not been run through synthesis or
 tested on real hardware.
